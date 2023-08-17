@@ -84,6 +84,34 @@ class DLinkList
         last.next = null;
     }
 
+    public void deletekey(int key)
+    {
+        Link cur = first.next;
+        Link prev = first;
+
+        if (first == null) {
+            System.out.println("Empty!");
+            return;
+        }
+        if (first.getdata() == key) {
+            first = first.next;
+            return;
+        }
+
+        while (cur != null) {
+            if (cur.getdata() == key) {
+                prev.next = cur.next;
+                System.out.println("Deleted!");
+                return;
+            }
+
+            prev = cur;
+            cur = cur.next;
+        }
+
+        System.out.println("Element not found!");
+    }
+
     public void insertafterkey(int key, int d)
     {
         Link nl = new Link(d);
@@ -138,11 +166,13 @@ public class LinkedList
         ll.insertlast(10);
         ll.insertlast(7);
 
-        System.out.println(ll.last.getdata());
         ll.display();
         
         ll.insertafterkey(10, 0);
 
+        ll.display();
+
+        ll.deletekey(100);
         ll.display();
     }
 }
