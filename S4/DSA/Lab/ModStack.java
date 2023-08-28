@@ -77,7 +77,6 @@ class Stack
                     }
                 }
 
-                System.out.println(", Number of times repeated: " + new_max);
                 if (new_max > max) {
                     max = new_max;
                     pos = i;
@@ -85,7 +84,6 @@ class Stack
             }
         }
 
-        System.out.println("Popped position: " + pos);
         return pos;
     }
 
