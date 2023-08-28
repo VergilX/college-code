@@ -65,13 +65,13 @@ class Stack
         int new_max;
         int[] checked = new int[this.max];
 
-        for (int i=0; i<length; ++i) {
+        for (int i=length-1; i>=0; --i) {
             if (!is_in(checked, arr[i], len)) {
                 System.out.print("Element being checked: " + arr[i]);
                 new_max = 1;
                 checked[len++] = arr[i];
                 
-                for (int j=i+1; j<length; ++j) {
+                for (int j=i-1; j>=0; --j) {
                     if (arr[j] == arr[i]) {
                         ++new_max;
                     }
@@ -114,13 +114,14 @@ class ModStack
 {
     public static void main(String[] args)
     {
-        Stack s = new Stack(5);
+        Stack s = new Stack(6);
 
         s.push(1);
         s.push(2);
         s.push(3);
         s.push(1);
         s.push(1);
+        s.push(2);
         
         s.display();
 
