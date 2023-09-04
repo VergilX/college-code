@@ -5,40 +5,32 @@ class Link
 {
     private int data;
     public Link next;
-    public Link prev;
 
-    public Link(int data) {
-        this.data = data;
+    public Link(int d) {
+        data = d;
+        next = null;
     }
 
     public int getdata()
     { return data; }
 }
 
-class Deque
+class AscQ
 {
     public Link first;
     public int length;
 
-    public Deque() {
-        first = null;
-        length = 0;
-    }
-    
+    public AscQ()
+    { first = null; }
+
     public void insertAtPos(int pos, int data) {
         Link nl = new Link(data);
         int count = 1;
         Link cur = first;
 
         if (pos == 1) {
-            // If not the starting node set prev
-            if (first != null)
-                first.prev = nl;
-
             nl.next = first;
-            System.out.println("Hello");
             first = nl;
-            System.out.println("Inserted!");
             ++length;
         }
 
@@ -54,8 +46,6 @@ class Deque
                         cur.next = nl;
                     }
                     
-                    nl.prev = cur;
-                    System.out.println("Inserted!");
                     ++length;
                     return;
                 }
@@ -81,6 +71,23 @@ class Deque
             first = first.next;
             --length;
         }
+
+        // If it is at the end
+        else if (pos == length+1) {
+            Link cur = first;
+
+            // If only single node
+            if (cur.next == null) {
+                first = null;
+                return;
+            }
+
+            while (cur.next.next != null) {
+                cur = cur.next;
+            }
+            cur.next = null;
+
+        }
             
         else {
             Link cur = first;
@@ -89,7 +96,6 @@ class Deque
 
             while (cur.next != null) {
                 if (count+1 == pos) {
-                    System.out.println("I'm in boiiiiiiiii " + first);
                     cur.next = cur.next.next;
                     --length;
 
@@ -99,14 +105,25 @@ class Deque
                 ++count;
             }
 
-            // If it is at the end
-            if (pos == length+1) {
-                System.out.println(cur.getdata());
-                cur = cur.prev;
-                System.out.println(cur.getdata());
-                cur.next = null;
+        }
+    }
+
+    public int find_pos(int d)
+    {
+        int pos = 0;
+        Link cur = first;
+
+        while (cur != null) {
+            if (d > cur.getdata()) {
+                cur = cur.next;
+                ++pos;
+            }
+            else {
+                break;
             }
         }
+
+        return pos;
     }
 
     public void display() {
@@ -127,40 +144,31 @@ class Deque
     }
 }
 
-class Dequepgm
+class AscPriQ
 {
     public static void main(String args[]) {
-        Deque d = new Deque();
+        AscQ d = new AscQ();
         Scanner sc = new Scanner(System.in);
         int ch = 0;
 
-        while (ch != 6) {
-            System.out.print("MENU OPTIONS:\n1. Insert front\n2. Insert rear\n3. Delete front\n4. Delete rear\n5. Display\n6. Exit\nEnter your choice: ");
+        while (ch != 4) {
+            System.out.print("MENU OPTIONS:\n1. Insert\n2. Delete\n3. Display\n4. Exit\nEnter your choice: ");
             ch = sc.nextInt();
 
             if (ch == 1) {
                 System.out.print("Enter data: ");
                 int a = sc.nextInt();
 
-                d.insertAtPos(1, a);
+                int pos = d.find_pos(a);
+                d.insertAtPos(pos+1, a);
             }
             else if (ch == 2) {
-                System.out.print("Enter data: ");
-                int a = sc.nextInt();
-
-                d.insertAtPos(d.length+1, a);
-            }
-            else if (ch == 3) {
                 d.deletePos(1);
             }
-            else if (ch == 4) {
-                System.out.println("Length of queue: " + d.length);
-                d.deletePos(d.length+1);
-            }
-            else if (ch == 5) {
+            else if (ch == 3) {
                 d.display();
             }
-            else if (ch == 6) {
+            else if (ch == 4) {
                 System.out.println("Terminating program");
             }
             else {
