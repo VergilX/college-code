@@ -47,7 +47,7 @@ def draw():
 
     for vertex in sq_vertices:
         vertex[0] += 5
-        # vertex[1] += 1
+        vertex[1] += 5
 
 def main():
     glutInit(sys.argv)
