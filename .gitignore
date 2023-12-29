@@ -1,2 +1,4 @@
-*.class
-*env
+**/*.class
+**env
+**/*.obj
+**/*.OBJ
