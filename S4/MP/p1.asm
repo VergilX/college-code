@@ -1,0 +1,50 @@
+/*
+
+Store 10 numbers in the 1000 - 100A
+Copy these numbers to a different address 1010 - 101A
+
+*/
+
+LXI H, 1000H
+MVI B, 0AH
+MOV M, B
+INR L
+DCR B
+JNZ 0005H
+
+LXI H, 1010H
+MVI B, 0AH
+LXI D, 1000H
+LDAX D
+MOV M, A
+INR L
+INR E
+DCR B
+JNZ 0808H
+
+
+/*
+
+Another method
+
+*/
+
+LXI H, 0000H
+MVI A, 0FH
+MVI C, 0AH
+MOV M, A
+INR A
+INX H
+DCR C
+JNZ 0007H
+
+LXI H, 0000H
+LXI B, 0020H
+MVI D, 0AH
+MOV A, M
+STAX B
+INX B
+INX H
+DCR D
+JNZ 0016H
+HLT
