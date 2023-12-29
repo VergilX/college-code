@@ -1,0 +1,17 @@
+Notes
+=====
+- /sys/class/backlight/intel_backlight/brightness
+
+
+- Hard links are the same as the file
+- Hard links and normal file can be identified using the command `ls -li` which shows the inode number
+
+
+- Three questoins that come to your mind:
+    What is a file?
+    What is a directory?
+    Why am I here?
+
+- Let's start off traditionally
+
+- Season 1 eps 1; Season 1 eps 2

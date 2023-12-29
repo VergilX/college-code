@@ -1,0 +1,308 @@
+WILDCARD EXAMPLES
+=================
+
+*
+
+g*
+
+b*.txt
+
+Data???
+
+BACKUP.[0-9][0-9][0-9]
+
+[abc]*
+
+[[:upper:]]*
+
+[![:digit:]]*
+
+*[[:lower:]123]
+
+
+cp EXAMPLES
+============
+
+cp file1 file2
+
+cp -i file1 file2
+
+cp file1 file2 dir1
+
+cp dir1/* dir2
+
+cp -r dir1 dir2
+
+
+
+
+mv EXAMPLES
+===========
+
+mv file1 file2
+
+mv -i file1 file2
+
+mv file1 file2 dir1
+
+mv dir1 dir2
+
+
+
+
+rm EXAMPLES
+===========
+
+rm file1
+
+rm -i file1
+
+rm -r file1 dir1
+
+rm -rf file1 dir1
+
+# Be careful with rm!
+rm *.html
+rm * .html
+
+# Tip: use ls to test
+
+MULTIPLE ARGUMENTS USING {}
+===========================
+
+eg: mv {file1,file2,file3} dir
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Questions:
+1. Write a *single* command to delete all files containing an UPPER case letter followed by a digit
+2. Write a *single* command to move all mp3 and mp4 files from current directory to a directory called music
+3. Write a *single* command to copy all files with the following format to a new directory
+    a) - Starting with a or b or c
+       - Has a digit before the .
+       - Extension of txt
+
+    b) - Contains 3 consecutive digits in filename
+       - Has an extension of .dat followed by a lowercase character
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ANSWERS:
+1. *[[:upper:]][[:digit:]]*
+2. mv {*.mp3,*.mp4} music
+
+3. 
+a) [abc]*[[:digit:]].txt     
+b) *[[:digit:]][[:digit:]][[:digit:]]*.dat[[:digit:]][[:digit:]]         OR       Replace [[:digit:]] by [0-9]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FINAL QUIZ
+===========
+
+
+Convert the following directory tree structure to a different one using the commands taught to you so far.
+
+Check your answer using the command: `tree .` (if tree is installed; or install at https://gitlab.com/OldManProgrammer/unix-tree)
+
+.
+├── Dangerously.mp3
+├── docs
+│   ├── docx
+│   ├── hollowknight-music1.mp3
+│   ├── hollowknight-music2.mp3
+│   ├── hollowknight-music3.mp3
+│   ├── hollowknight-music4.mp3
+│   ├── pdf
+│   ├── text
+│   ├── undertale-music1.mp3
+│   ├── undertale-music2.mp3
+│   └── undertale-music3.mp3
+├── gamefiles
+│   ├── HollowKnight
+│   │   ├── data
+│   │   ├── music
+│   │   ├── undertaledata1.dat
+│   │   ├── undertaledata2.dat
+│   │   ├── undertaledata3.dat
+│   │   ├── undertaledata4.dat
+│   │   └── undertaledata5.dat
+│   └── Undertale
+│       ├── data
+│       ├── hollowknightdata1.dat
+│       ├── hollowknightdata2.dat
+│       ├── hollowknightdata3.dat
+│       └── music
+├── generate_files.sh
+├── Heartache.mp3
+├── INeedU.mp3
+├── misc
+│   ├── doc1.pdf
+│   ├── doc2.pdf
+│   ├── doc3.pdf
+│   ├── microsoft_sucks1.docx
+│   ├── microsoft_sucks2.docx
+│   ├── microsoft_sucks3.docx
+│   └── microsoft_sucks4.docx
+├── MockingBird.mp3
+├── music
+│   ├── acapella
+│   ├── instrumental
+│   ├── jazz
+│   ├── pic4k1.png
+│   ├── pic4k2.png
+│   ├── pic4k3.png
+│   ├── pic4k4.png
+│   ├── pop
+│   └── rap
+├── Perfect.mp3
+├── pics
+│   ├── 4k
+│   ├── 720p
+│   ├── low-quality
+│   ├── notes1.txt
+│   ├── notes2.txt
+│   └── notes3.txt
+├── RapGod.mp3
+└── Starboy.mp3
+
+23 directories, 37 files
+
+
+
+
+
+CONVERT TO THIS:
+.
+├── docs
+│   ├── docx
+│   │   ├── microsoft_sucks1.docx
+│   │   ├── microsoft_sucks2.docx
+│   │   ├── microsoft_sucks3.docx
+│   │   └── microsoft_sucks4.docx
+│   ├── pdf
+│   │   ├── doc1.pdf
+│   │   ├── doc2.pdf
+│   │   └── doc3.pdf
+│   └── text
+│       ├── notes1.txt
+│       ├── notes2.txt
+│       └── notes3.txt
+├── gamefiles
+│   ├── HollowKnight
+│   │   ├── data
+│   │   │   ├── hollowknightdata1.dat
+│   │   │   ├── hollowknightdata2.dat
+│   │   │   └── hollowknightdata3.dat
+│   │   └── music
+│   │       ├── hollowknight-music1.mp3
+│   │       ├── hollowknight-music2.mp3
+│   │       ├── hollowknight-music3.mp3
+│   │       └── hollowknight-music4.mp3
+│   └── Undertale
+│       ├── data
+│       │   ├── undertaledata1.dat
+│       │   ├── undertaledata2.dat
+│       │   ├── undertaledata3.dat
+│       │   ├── undertaledata4.dat
+│       │   └── undertaledata5.dat
+│       └── music
+│           ├── undertale-music1.mp3
+│           ├── undertale-music2.mp3
+│           └── undertale-music3.mp3
+├── generate_files.sh
+├── misc
+├── music
+│   ├── acapella
+│   ├── instrumental
+│   │   └── Heartache.mp3
+│   ├── jazz
+│   │   ├── Dangerously.mp3
+│   │   └── MockingBird.mp3
+│   ├── pop
+│   │   ├── INeedU.mp3
+│   │   ├── Perfect.mp3
+│   │   └── Starboy.mp3
+│   └── rap
+│       └── RapGod.mp3
+└── pics
+    ├── 4k
+    │   ├── pic4k1.png
+    │   ├── pic4k2.png
+    │   ├── pic4k3.png
+    │   └── pic4k4.png
+    ├── 720p
+    └── low-quality
+
+23 directories, 37 files
+
+
+
+
+
+
+
