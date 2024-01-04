@@ -1,0 +1,11 @@
+-> Use LEA for using variables
+-> MOV AH, 4CH for ending program not AX; it causes it to be stuck
+-> Use AH register for display and keyboard interrupts you shit!
+-> 0AH is the hex for carriage return
+-> Use RET for procedures always
+
+-> ASCII to HEX conversion ( https://web.alfredstate.edu/faculty/weimandn/miscellaneous/ascii/ascii_index.html )
+Notice how the ASCII code (hex) for a number relates to the number itself. This is what makes it so easy to convert numbers to and from ASCII. If you have the ASCII code for a number you can either subtract 30h or mask off the upper four bits and you will be left with the number itself
+
+-> Not using H becomes decimal
+-> Don't mess with the Accumulator always store in other ones

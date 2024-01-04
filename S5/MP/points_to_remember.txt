@@ -1,4 +1,0 @@
--> Use LEA for using variables
--> MOV AH, 4CH for ending program not AX; it causes it to be stuck
--> Use AH register for display and keyboard interrupts you shit!
--> 0AH is the hex for carriage return
