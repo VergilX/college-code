@@ -6,6 +6,13 @@ DATA ENDS
 
 CODE SEGMENT
 	ASSUME CS:CODE, DS:DATA
+	; Get char from user and store in AL
+	GET PROC
+		MOV AH, 01H
+		INT 21H
+		RET
+	GET ENDP
+
 	; Print char from DL
 	PUT PROC
 		ADD DL, 48
