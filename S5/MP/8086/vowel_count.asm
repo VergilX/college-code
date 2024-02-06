@@ -1,0 +1,83 @@
+DATA SEGMENT
+	MSG DB "Enter string: $"
+	MSG2 DB "Ans: $"
+DATA ENDS
+
+
+CODE SEGMENT
+	ASSUME CS:CODE, DS:DATA
+	; Print char from DL
+	PUT PROC
+		ADD DL, 48
+		MOV AH, 02H
+		INT 21H
+		RET
+	PUT ENDP
+
+	; Print string from DX address
+	PRINTSTRING PROC
+		MOV AH, 09H
+		INT 21H
+		RET
+	PRINTSTRING ENDP
+
+	START:
+		MOV AX, DATA
+		MOV DS, AX
+
+		LEA DX, MSG
+		CALL PRINTSTRING
+
+		; Count
+		MOV CL, 00H
+
+		; Get the string
+		GETSTRING:
+			CALL GET
+
+			; Compare logic
+			CMP AL, 'a'
+			JZ INCREMENT
+			CMP AL, 'e'
+			JZ INCREMENT
+			CMP AL, 'a'
+			JZ INCREMENT
+			CMP AL, 'i'
+			JZ INCREMENT
+			CMP AL, 'o'
+			JZ INCREMENT
+			CMP AL, 'u'
+			JZ INCREMENT
+			CMP AL, 'A'
+			JZ INCREMENT
+			CMP AL, 'E'
+			JZ INCREMENT
+			CMP AL, 'I'
+			JZ INCREMENT
+			CMP AL, 'O'
+			JZ INCREMENT
+			CMP AL, 'U'
+			JZ INCREMENT
+
+			CMP AL, 0DH
+			JZ RESULT
+			JMP GETSTRING
+
+		INCREMENT:
+			ADD CL, 01H
+			JMP GETSTRING
+
+		RESULT:
+			LEA DX, MSG2
+			CALL PRINTSTRING
+
+			; Single digit
+			MOV DL, CL
+			CALL PUT
+
+	STOP:
+		MOV AH, 4CH
+		INT 21H
+
+	CODE ENDS
+END START
