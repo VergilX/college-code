@@ -44,34 +44,34 @@ CODE SEGMENT
             RET
 
         MORE:
-            ; MOV CL,10 ;8 BIT NUMBER
-            ; MOV AX,BX
-            ; DIV CL
-            ; 
-            ; 
-            ; MOV CH,AH
-            ; SUB AH,AH
-            ; MOV BX,AX
-            ; 
-            ; PUSH CX
-            ; CALL DISPLAY
-            ; POP CX
-            ; 
-            ; MOV AL,CH
-            ; ADD AL,48
-            ; CALL PRINT
-            MOV AX, BX
-            MOV CL, 10
+            MOV CL,10 ;8 BIT NUMBER
+            MOV AX,BX
             DIV CL
-
-            PUSH AX
+            
+            
+            MOV CH,AH
+            SUB AH,AH
+            MOV BX,AX
+            
+            PUSH CX
             CALL DISPLAY
-            POP AX
-
-            MOV AL, AH
-            ADD AL, 48
+            POP CX
+            
+            MOV AL,CH
+            ADD AL,48
             CALL PRINT
-            RET
+            ; MOV AX, BX
+            ; MOV CL, 10
+            ; DIV CL
+
+            ; PUSH AX
+            ; CALL DISPLAY
+            ; POP AX
+
+            ; MOV AL, AH
+            ; ADD AL, 48
+            ; CALL PRINT
+            ; RET
     DISPLAY ENDP
 
     START:
