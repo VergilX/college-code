@@ -9,6 +9,7 @@ Notice how the ASCII code (hex) for a number relates to the number itself. This 
 
 -> Not using H becomes decimal
 -> Don't mess with the Accumulator always store in other ones
+-> Put procedures inside the code segment otherwise the assembler gets diarrhoea
 
 Multiplication syntax:
 	byte:
