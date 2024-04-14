@@ -25,7 +25,6 @@ int FALSE = 0;
 
 int main(void)
 {
-    int pfd;
     char str[MAX_STR_LEN];
     int n;
 
@@ -53,6 +52,8 @@ int main(void)
     else if (p == 0) {
         // Read from pipe after closing write end
         close(pipefd[1]);
+        
+        read(pipefd[0], &n, sizeof(int));
         read(pipefd[0], str, sizeof(char)*(n+1));
 
         // Close first pipe
@@ -72,17 +73,16 @@ int main(void)
     }
     // Parent process
     else {
-
         printf("Parent process(%d) request input:\n", getpid());
         printf("Enter string: ");
         scanf("%s", str);
-
-        // printf("Parent process(%d):\n", getpid());
+        n = strlen(str);
 
         // Write to pipe after closing read end
         close(pipefd[0]);
 
-        write(pipefd[1], str, sizeof(char)*n);
+        write(pipefd[1], &n, sizeof(int));
+        write(pipefd[1], str, sizeof(char)*(n+1));
 
         close(pipefd[1]);
 
