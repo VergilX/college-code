@@ -58,7 +58,7 @@ int main()
 
         // Check for invalid OTP
         for (int i=0; i<OTP_LEN+1; ++i) {
-            if (isalpha(OTP[i])) {
+            if (!isdigit(OTP[i])) {
                 printf("Invalid OTP value\n");
                 kill(0, SIGKILL);
                 exit(EXIT_FAILURE);
