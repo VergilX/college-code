@@ -2,3 +2,6 @@
 **env
 **/*.obj
 **/*.OBJ
+**/a.out
+**/lex.yy.c
+**/__pycache__
