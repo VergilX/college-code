@@ -1,0 +1,96 @@
+Grammar
+
+    0 $accept: start $end
+
+    1 start: prod '\n'
+    2      | ε
+
+    3 prod: ε
+    4     | 'a' prod 'b'
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '\n' (10) 1
+    'a' (97) 4
+    'b' (98) 4
+    error (256)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (6)
+        on left: 0
+    start (7)
+        on left: 1 2
+        on right: 0
+    prod (8)
+        on left: 3 4
+        on right: 1 4
+
+
+State 0
+
+    0 $accept: • start $end
+
+    'a'  shift, and go to state 1
+
+    '\n'      reduce using rule 3 (prod)
+    $default  reduce using rule 2 (start)
+
+    start  go to state 2
+    prod   go to state 3
+
+
+State 1
+
+    4 prod: 'a' • prod 'b'
+
+    'a'  shift, and go to state 1
+
+    $default  reduce using rule 3 (prod)
+
+    prod  go to state 4
+
+
+State 2
+
+    0 $accept: start • $end
+
+    $end  shift, and go to state 5
+
+
+State 3
+
+    1 start: prod • '\n'
+
+    '\n'  shift, and go to state 6
+
+
+State 4
+
+    4 prod: 'a' prod • 'b'
+
+    'b'  shift, and go to state 7
+
+
+State 5
+
+    0 $accept: start $end •
+
+    $default  accept
+
+
+State 6
+
+    1 start: prod '\n' •
+
+    $default  reduce using rule 1 (start)
+
+
+State 7
+
+    4 prod: 'a' prod 'b' •
+
+    $default  reduce using rule 4 (prod)
